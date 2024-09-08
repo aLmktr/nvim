@@ -25,10 +25,12 @@ end)
 vim.opt.termguicolors = true
 require("bufferline").setup({
 	options = {
-
 		offsets = {
 			{
 				filetype = "neo-tree",
+			},
+			{
+				filetype = "toggleterm",
 			},
 		},
 	},
