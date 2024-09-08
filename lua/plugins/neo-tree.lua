@@ -10,10 +10,14 @@ return {
 	keys = {
 		{ "<leader>e", ":Neotree toggle<CR>", desc = "Toggle NeoTree", silent = true },
 	},
+
 	opts = {
 		filesystem = {
 			window = {
 				width = 28,
+			},
+			filtered_items = {
+				visible = true,
 			},
 		},
 	},
