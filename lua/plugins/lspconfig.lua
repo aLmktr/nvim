@@ -89,7 +89,6 @@ return {
 				clangd = {},
 				gopls = {},
 				pyright = {},
-				tsserver = {},
 				ruff = {},
 				prettier = {},
 				markdownlint = {},
