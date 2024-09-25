@@ -89,7 +89,7 @@ return {
 				clangd = {},
 				gopls = {},
 				pyright = {},
-				ruff = {},
+				ruff_lsp = {},
 				prettier = {},
 				markdownlint = {},
 
