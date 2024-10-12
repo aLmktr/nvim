@@ -17,6 +17,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 local project_venv_cache = {}
+local venv_names = { ".venv", "venv" }
 
 -- automatically run find_venv on FileType python, but only once per project
 vim.api.nvim_create_autocmd("FileType", {
@@ -29,8 +30,17 @@ vim.api.nvim_create_autocmd("FileType", {
 			return
 		end
 
-		local venv_path = root_dir .. "/.venv/bin/python"
-		if vim.fn.executable(venv_path) == 1 then
+		-- iterate over possible venv names
+		local venv_path = nil
+		for _, venv_name in ipairs(venv_names) do
+			local possible_venv = root_dir .. "/" .. venv_name .. "/bin/python"
+			if vim.fn.executable(possible_venv) == 1 then
+				venv_path = possible_venv
+				break
+			end
+		end
+
+		if venv_path then
 			-- Set Pyright pythonPath
 			require("lspconfig").pyright.setup({
 				settings = {
@@ -49,7 +59,7 @@ vim.api.nvim_create_autocmd("FileType", {
 			-- cache the project path to avoid redundant checks
 			project_venv_cache[root_dir] = true
 		else
-			print("No .venv found in project root")
+			print("No virtual environment found in project root")
 		end
 	end,
 })
