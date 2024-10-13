@@ -1,9 +1,23 @@
 <div align="center">
    <img src="https://github.com/user-attachments/assets/a598a61e-6934-4a4a-9108-ab8cbf4f8d87" alt="nvim-ascii-logo" />
 </div>
+
 <br />
+
  <p align="center">
     <em>Nvim config with a modular structure to create a modern IDE experience for efficient and productive development.</em>
  </p>
 
-<br />
+ <br />
+ 
+## 🚀 Getting Started 
+### Prerequisites
+- **Neovim:** Ensure you have [Neovim](https://neovim.io/) installed. You can check by running `nvim --version`.
+- **Linux System**: This configuration is for Linux. If you're using macOS or Windows, check [Neovim installation for your system](https://github.com/neovim/neovim/blob/master/INSTALL.md), as the paths and some dependencies may vary.
+
+### Installation
+1. Clone the repository
+```bash
+git clone https://github.com/aLmktr/nvim.git ~/.config/nvim
+```
+2. Open `nvim`, and that's it! [lazy.nvim](https://github.com/folke/lazy.nvim) will handle the rest — just sit back and watch the magic happen!
