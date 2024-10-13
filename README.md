@@ -20,7 +20,7 @@
 ```bash
 git clone https://github.com/aLmktr/nvim.git ~/.config/nvim
 ```
-2. Open `nvim`, and that's it! [lazy.nvim](https://github.com/folke/lazy.nvim) will handle the rest — just sit back and watch the magic happen!
+2. Open `nvim`, and that’s it! Everything will be set up automatically — just sit back and watch the magic happen!
 
 <br />
 
