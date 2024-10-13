@@ -26,3 +26,8 @@ git clone https://github.com/aLmktr/nvim.git ~/.config/nvim
 
 ## 🤝 Contributing 
 Your feedback is appreciated! Please don’t hesitate to open an issue or create a pull request for any suggestions or improvements.
+
+<br />
+
+## ⚖️ License 
+This project is licensed under the MIT License. For more details, please refer to the [LICENSE](LICENSE) file.
