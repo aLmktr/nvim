@@ -5,7 +5,6 @@ return {
 		ft = "lua",
 		opts = {
 			library = {
-				-- Load luvit types when the `vim.uv` word is found
 				{ path = "luvit-meta/library", words = { "vim%.uv" } },
 			},
 		},
@@ -48,7 +47,6 @@ return {
 					map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
 					map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
-					-- When you move your cursor, the highlights will be cleared (the second autocommand).
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
 						local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
@@ -73,7 +71,6 @@ return {
 						})
 					end
 
-					-- This may be unwanted, since they displace some of your code
 					if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
 						map("<leader>th", function()
 							vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
@@ -90,8 +87,6 @@ return {
 				gopls = {},
 				pyright = {},
 				ruff_lsp = {},
-				prettier = {},
-				markdownlint = {},
 
 				lua_ls = {
 					settings = {
@@ -104,18 +99,39 @@ return {
 				},
 			}
 
-			require("mason").setup()
+			-- Include all necessary tools in ensure_installed
+			local ensure_installed = {
+				"clangd",
+				"docker_compose_language_service",
+				"dockerls",
+				"gopls",
+				"lua_ls",
+				"markdownlint",
+				"prettier",
+				"pyright",
+				"ruff_lsp",
+				"ts_ls",
+				"clang-format",
+				"eslint_d",
+				"prettierd",
+				"shfmt",
+				"shellcheck",
+				"yamllint",
+				"jsonlint",
+				"hadolint",
+			}
 
-			local ensure_installed = vim.tbl_keys(servers or {})
-			vim.list_extend(ensure_installed, {
-				"stylua",
+			-- Ensure installation of all necessary tools
+			require("mason-tool-installer").setup({
+				ensure_installed = ensure_installed,
+				automatic_installation = true, -- Automatically installs if not present
 			})
-			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
+			-- Add LSP servers for mason-lspconfig
 			require("mason-lspconfig").setup({
+				ensure_installed = vim.tbl_keys(servers),
 				handlers = {
 					function(server_name)
-						-- issue with the tsserver being deprecated
 						server_name = server_name == "tsserver" and "ts_ls" or server_name
 						local server = servers[server_name] or {}
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
