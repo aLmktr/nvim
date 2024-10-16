@@ -30,6 +30,9 @@ return {
 						require("telescope.themes").get_dropdown(),
 					},
 				},
+				defaults = {
+					file_ignore_patterns = { "node_modules", ".git", "%.venv", "venv" }, -- Ignore patterns
+				},
 			})
 
 			-- Load extensions if available
@@ -42,7 +45,7 @@ return {
 			vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
 
 			vim.keymap.set("n", "<leader>ff", function()
-				builtin.find_files({ hidden = true, file_ignore_patterns = { "node_modules", ".git" } })
+				builtin.find_files({ hidden = true })
 			end, { desc = "[F]ind [F]iles" })
 
 			vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
@@ -61,7 +64,7 @@ return {
 				}))
 			end)
 
-			-- seach open files
+			-- search open files
 			vim.keymap.set("n", "<leader>s/", function()
 				builtin.live_grep({
 					grep_open_files = true,
