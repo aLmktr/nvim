@@ -1,5 +1,6 @@
 <div align="center">
    <img src="https://github.com/user-attachments/assets/a598a61e-6934-4a4a-9108-ab8cbf4f8d87" alt="nvim-ascii-logo" />
+   <img src="https://github.com/user-attachments/assets/7bbc45d6-c4b1-44f5-902b-8d7429eb42ef" alt="nvim-config-demo" />
 </div>
 
 <br />
