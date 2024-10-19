@@ -102,9 +102,6 @@ return {
 			-- Include all necessary tools in ensure_installed
 			local ensure_installed = {
 				"clangd",
-				"docker_compose_language_service",
-				"dockerls",
-				"gopls",
 				"lua_ls",
 				"markdownlint",
 				"prettier",
@@ -118,7 +115,6 @@ return {
 				"shellcheck",
 				"yamllint",
 				"jsonlint",
-				"hadolint",
 			}
 
 			-- Ensure installation of all necessary tools
