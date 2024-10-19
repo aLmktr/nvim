@@ -83,11 +83,6 @@ return {
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 			local servers = {
-				clangd = {},
-				gopls = {},
-				pyright = {},
-				ruff_lsp = {},
-
 				lua_ls = {
 					settings = {
 						Lua = {
@@ -99,27 +94,8 @@ return {
 				},
 			}
 
-			-- Include all necessary tools in ensure_installed
-			local ensure_installed = {
-				"clangd",
-				"lua_ls",
-				"markdownlint",
-				"prettier",
-				"pyright",
-				"ruff_lsp",
-				"ts_ls",
-				"clang-format",
-				"eslint_d",
-				"prettierd",
-				"shfmt",
-				"shellcheck",
-				"yamllint",
-				"jsonlint",
-			}
-
 			-- Ensure installation of all necessary tools
 			require("mason-tool-installer").setup({
-				ensure_installed = ensure_installed,
 				automatic_installation = true, -- Automatically installs if not present
 			})
 
