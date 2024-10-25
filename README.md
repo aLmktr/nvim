@@ -17,18 +17,41 @@
 - **Linux System**: This configuration is for Linux. If you're using macOS or Windows, check [Neovim installation for your system](https://github.com/neovim/neovim/blob/master/INSTALL.md), as the paths and some dependencies may vary.
 
 ### Installation
-1. Clone the repository
-```bash
-git clone https://github.com/aLmktr/nvim.git ~/.config/nvim
-```
+
+<details open>
+  <summary>Linux/macOS</summary>
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/aLmktr/nvim.git ~/.config/nvim
+   ```
+
 2. Open `nvim`, and that’s it! Everything will be set up automatically — just sit back and watch the magic happen!
+
+</details>
+
+<details>
+  <summary>Windows</summary>
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/aLmktr/nvim.git $env:LOCALAPPDATA\nvim
+   ```
+
+2. Open `nvim`, and the configuration will install automatically.
+
+</details>
 
 <br />
 
-## 🤝 Contributing 
+## 🤝 Contributing
+
 Your feedback is appreciated! Please don’t hesitate to open an issue or create a pull request for any suggestions or improvements.
 
 <br />
 
-## ⚖️ License 
+## ⚖️ License
+
 This project is licensed under the MIT License. For more details, please refer to the [LICENSE](LICENSE) file.
