@@ -14,33 +14,44 @@
 ## 🚀 Getting Started 
 ### Prerequisites
 - **Neovim:** Ensure you have [Neovim](https://neovim.io/) installed. You can check by running `nvim --version`.
-- **Linux System**: This configuration is for Linux. If you're using macOS or Windows, check [Neovim installation for your system](https://github.com/neovim/neovim/blob/master/INSTALL.md), as the paths and some dependencies may vary.
 
 ### Installation
 
 <details open>
   <summary>Linux/macOS</summary>
 
-1. Clone the repository:
+1. first if you have existing nvim config, back up your existing configuration by running the following command:
+
+   ```bash
+   mv ~/.config/nvim{,.bak}
+   ```
+
+2. Clone the repository:
 
    ```bash
    git clone https://github.com/aLmktr/nvim.git ~/.config/nvim
    ```
 
-2. Open `nvim`, and that’s it! Everything will be set up automatically — just sit back and watch the magic happen!
+3. Open `nvim`, and that’s it! Everything will be set up automatically — just sit back and watch the magic happen!
 
 </details>
 
 <details>
   <summary>Windows</summary>
+   
+1. first if you have existing nvim config, back up your existing configuration by running the following command:
 
-1. Clone the repository:
+   ```bash
+   Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
+   ```
+
+2. Clone the repository:
 
    ```bash
    git clone https://github.com/aLmktr/nvim.git $env:LOCALAPPDATA\nvim
    ```
 
-2. Open `nvim`, and the configuration will install automatically.
+3. Open `nvim`, and the configuration will install automatically.
 
 </details>
 
