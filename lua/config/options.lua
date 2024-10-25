@@ -16,13 +16,13 @@ vim.opt.tabstop = 4 -- The number of spaces that a tab character counts for
 vim.opt.shiftwidth = 4 -- The number of spaces to use for each step of (auto)indent
 vim.opt.softtabstop = 4 -- Number of spaces a tab counts for during editing operations
 vim.opt.expandtab = true -- Convert tabs to spaces
+vim.opt.termguicolors = true
 
 vim.schedule(function()
 	vim.opt.clipboard = "unnamedplus" -- Use the system clipboard
 end)
 
 -- buffer line
-vim.opt.termguicolors = true
 require("bufferline").setup({
 	options = {
 		offsets = {
