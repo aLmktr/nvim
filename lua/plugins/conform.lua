@@ -29,7 +29,39 @@ return {
 				}
 			end,
 			formatters_by_ft = {
+				-- Lua formatting
 				lua = { "stylua" },
+				-- Python formatting with Ruff (replaces black, isort, etc.)
+				python = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
+				-- Web development
+				javascript = { "prettier" },
+				typescript = { "prettier" },
+				javascriptreact = { "prettier" },
+				typescriptreact = { "prettier" },
+				json = { "prettier" },
+				jsonc = { "prettier" },
+				yaml = { "prettier" },
+				html = { "prettier" },
+				css = { "prettier" },
+				scss = { "prettier" },
+				markdown = { "prettier" },
+				-- Shell scripts
+				sh = { "shfmt" },
+				bash = { "shfmt" },
+				zsh = { "shfmt" },
+			},
+			-- Custom formatters configuration
+			formatters = {
+				ruff_format = {
+					command = "ruff",
+					args = { "format", "--stdin-filename", "$FILENAME", "-" },
+					stdin = true,
+				},
+				ruff_organize_imports = {
+					command = "ruff",
+					args = { "check", "--select", "I", "--fix", "--stdin-filename", "$FILENAME", "-" },
+					stdin = true,
+				},
 			},
 		},
 	},
