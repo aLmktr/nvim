@@ -1,5 +1,8 @@
+-- Line Numbers
 vim.opt.number = true -- Show line numbers
 vim.opt.relativenumber = true -- Show relative line numbers
+vim.opt.numberwidth = 2 -- Set number column width to 2 {default 4}
+
 vim.opt.showmode = false -- Don't display mode (e.g., -- INSERT --)
 vim.opt.breakindent = true -- Enable break indent (preserves indentation on wrapped lines)
 vim.opt.undofile = true -- Enable persistent undo
@@ -21,17 +24,3 @@ vim.opt.termguicolors = true
 vim.schedule(function()
 	vim.opt.clipboard = "unnamedplus" -- Use the system clipboard
 end)
-
--- buffer line
-require("bufferline").setup({
-	options = {
-		offsets = {
-			{
-				filetype = "neo-tree",
-			},
-			{
-				filetype = "toggleterm",
-			},
-		},
-	},
-})
