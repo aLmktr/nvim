@@ -79,9 +79,26 @@ return {
 				end,
 			})
 
+			-- Disable hover capability from Ruff in favor of Pyright
+			vim.api.nvim_create_autocmd("LspAttach", {
+				group = vim.api.nvim_create_augroup('lsp_attach_disable_ruff_hover', { clear = true }),
+				callback = function(args)
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					if client == nil then
+						return
+					end
+					if client.name == 'ruff' then
+						-- Disable hover in favor of Pyright
+						client.server_capabilities.hoverProvider = false
+					end
+				end,
+				desc = 'LSP: Disable hover capability from Ruff',
+			})
+
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
+			-- Enhanced server configurations
 			local servers = {
 				lua_ls = {
 					settings = {
@@ -92,11 +109,56 @@ return {
 						},
 					},
 				},
+				-- Python: Pyright for definitions/hover, Ruff for linting/formatting
+				pyright = {
+					settings = {
+						pyright = {
+							-- Using Ruff for import organization
+							disableOrganizeImports = true,
+						},
+						python = {
+							analysis = {
+								-- Use Pyright for type checking, Ruff for linting
+								autoSearchPaths = true,
+								useLibraryCodeForTypes = true,
+								diagnosticMode = "workspace",
+							},
+						},
+					},
+				},
+				-- Ruff for Python linting and formatting (updated config)
+				ruff = {
+					init_options = {
+						settings = {
+							-- Configuration for ruff server (not ruff-lsp)
+							logLevel = "info",
+						}
+					},
+				},
+				-- Web development
+				ts_ls = {}, -- TypeScript/JavaScript
+				html = {},
+				cssls = {},
+				jsonls = {},
 			}
 
 			-- Ensure installation of all necessary tools
 			require("mason-tool-installer").setup({
-				automatic_installation = true, -- Automatically installs if not present
+				ensure_installed = {
+					-- Python tools
+					"pyright", -- For definitions, hover, type checking
+					"ruff", -- For linting and formatting (replaces ruff-lsp)
+					"debugpy", -- For debugging
+					-- Lua tools
+					"stylua",
+					-- Web development tools
+					"typescript-language-server", -- For TypeScript/JavaScript
+					"prettier",
+					"eslint_d",
+					-- Other useful tools
+					"shfmt",
+				},
+				automatic_installation = true,
 			})
 
 			-- Add LSP servers for mason-lspconfig
@@ -104,7 +166,6 @@ return {
 				ensure_installed = vim.tbl_keys(servers),
 				handlers = {
 					function(server_name)
-						server_name = server_name == "tsserver" and "ts_ls" or server_name
 						local server = servers[server_name] or {}
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 						require("lspconfig")[server_name].setup(server)
